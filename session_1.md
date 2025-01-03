@@ -129,7 +129,3 @@
 
 ---
 
-### Capture d’écran (exemple)
-Ajoutez vos captures comme ceci :
-```markdown
-![Capture d’écran de l'installation locale](images/installation-wordpress.png)
