@@ -137,4 +137,3 @@ Les **menus** permettent de structurer la navigation de votre site.
 
 ---
 
-Avec cette session, vous avez appris à configurer les réglages essentiels de WordPress et à personnaliser l'apparence de votre site avec des thèmes, widgets et menus. Vous êtes maintenant prêt à explorer plus profondément les fonctionnalités de WordPress dans les prochaines sessions !
