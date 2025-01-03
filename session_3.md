@@ -131,4 +131,3 @@
 
 ---
 
-Avec cette session, vous maîtriserez les bases pour gérer le contenu d'un site WordPress, qu’il s’agisse de blogs dynamiques ou de pages statiques. Ces compétences sont essentielles pour maintenir un site organisé et attrayant.
