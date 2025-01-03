@@ -14,32 +14,32 @@ Bienvenue dans cette formation complète pour apprendre à utiliser WordPress, l
 
 ## Programme du cours
 
-### **Session 1 : Installation de WordPress et introduction à l’écosystème**
+### **[Session 1 : Installation de WordPress et introduction à l’écosystème](session_1.md)**
 - Objectif : Installer WordPress en local (PC et Mac) et explorer son interface.
 - Contenu : Installation de XAMPP/MAMP, création de bases de données, configuration initiale.
 - Pratique : Mise en place de WordPress et découverte du tableau de bord.
 
-### **Session 2 : Configuration des réglages et personnalisation de l'apparence**
+### **[Session 2 : Configuration des réglages et personnalisation de l'apparence](session_2.md)**
 - Objectif : Configurer les options de WordPress et personnaliser un thème.
 - Contenu : Réglages généraux, menus, widgets, introduction aux thèmes.
 - Pratique : Personnalisation d’un thème préexistant.
 
-### **Session 3 : Gestion des contenus (articles, pages, médias, catégories)**
+### **[Session 3 : Gestion des contenus (articles, pages, médias, catégories)](session_3.md)**
 - Objectif : Apprendre à gérer le contenu et les médias dans WordPress.
 - Contenu : Articles, pages, catégories, balises, bibliothèque des médias.
 - Pratique : Création d’un blog fonctionnel avec plusieurs articles et pages.
 
-### **Session 4 : Extensions et fonctionnalités avancées**
+### **[Session 4 : Extensions et fonctionnalités avancées](session_4.md)**
 - Objectif : Étendre les fonctionnalités de WordPress.
 - Contenu : Installation et gestion de plugins, optimisation des performances, sécurité.
 - Pratique : Ajout de fonctionnalités comme des formulaires de contact et des galeries.
 
-### **Session 5 : Introduction à la création de thèmes WordPress**
+### **[Session 5 : Introduction à la création de thèmes WordPress](session_5.md)**
 - Objectif : Comprendre la structure des thèmes WordPress.
 - Contenu : Templates, hooks, fichier `functions.php`, hiérarchie des fichiers.
 - Pratique : Modification d’un thème enfant.
 
-### **Session 6 : Développement d’un thème personnalisé**
+### **[Session 6 : Développement d’un thème personnalisé](session_6.md)**
 - Objectif : Créer un thème WordPress de zéro.
 - Contenu : Configuration de base, création de fichiers PHP et CSS, intégration.
 - Pratique : Développement d’un thème minimaliste.
@@ -74,7 +74,7 @@ Bienvenue dans cette formation complète pour apprendre à utiliser WordPress, l
 ## Installation locale pour suivre le cours
 1. Téléchargez ce dépôt GitHub.
 2. Installez un serveur local (XAMPP ou MAMP).
-3. Suivez les instructions spécifiques dans le fichier **Session 1**.
+3. Suivez les instructions spécifiques dans le fichier **[Session 1](session_1.md)**.
 
 ---
 
