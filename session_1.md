@@ -116,7 +116,8 @@
 
 ## Ressources supplémentaires
 - **Documentation officielle WordPress** : [https://wordpress.org/support/](https://wordpress.org/support/)
-- **Tutoriels vidéo** : [Installation locale WordPress (MAC)](https://www.youtube.com/watch?v=_oB9ltryMXI&t=219s)
+- **Tutoriels vidéo** : [Installation locale WordPress (MAC)](https://www.youtube.com/watch?v=_oB9ltryMXI&t)
+- **Tutoriels vidéo** : [Installation locale WordPress (PC)](https://www.youtube.com/watch?v=um8BtHFNJBA&t)
 - **Guide XAMPP** : [https://www.apachefriends.org/index.html](https://www.apachefriends.org/index.html)
 - **Guide MAMP** : [https://www.mamp.info/en/documentation/](https://www.mamp.info/en/documentation/)
 
