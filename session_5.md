@@ -1,138 +1,169 @@
-# Session 5 : Introduction à la création de thèmes WordPress
+# Session 5 : Développement d’un thème personnalisé WordPress
 
 ## Objectifs de la session
-- Comprendre la structure d’un thème WordPress.
-- Apprendre le rôle des fichiers principaux d’un thème (template files).
-- Découvrir les hooks, les templates, et le fichier `functions.php`.
-- Créer et activer un thème enfant pour personnaliser un thème existant.
+- Comprendre les étapes pour créer un thème WordPress à partir de zéro.
+- Apprendre à structurer les fichiers d’un thème personnalisé.
+- Intégrer du contenu dynamique avec les fonctions WordPress.
+- Tester et activer un thème personnalisé.
 
 ---
 
-## 1. Qu’est-ce qu’un thème WordPress ?
-Un thème WordPress contrôle l’apparence et la structure visuelle d’un site. Les thèmes se composent de fichiers PHP, CSS, JavaScript, et parfois HTML. Ils utilisent la hiérarchie des templates pour afficher différents types de contenu.
+## Sommaire
 
-### Structure de base d’un thème
-Un thème WordPress contient généralement les fichiers suivants :
-
-- **index.php** : Fichier principal utilisé par défaut si aucun autre fichier n’est trouvé.
-- **style.css** : Fichier de styles pour le design du thème.
-- **functions.php** : Ajoute des fonctionnalités au thème.
-- **header.php** : Contient l’en-tête du site.
-- **footer.php** : Contient le pied de page.
-- **sidebar.php** : Contient les barres latérales.
-- **single.php** : Gère l’affichage d’un article.
-- **page.php** : Gère l’affichage d’une page.
+1. [Pré-requis](#pré-requis)  
+2. [Étape 1 : Mettre en place la Home Page](#étape-1--mettre-en-place-la-home-page)  
+    - 1.1. Créer le dossier du thème  
+    - 1.2. Créer le fichier `style.css`  
+    - 1.3. Créer le fichier `front-page.php`  
+    - 1.4. Activer le thème et vérifier l’affichage  
+3. [Étape 2 : Ajouter une page About](#étape-2--ajouter-une-page-about)  
+    - 2.1. Créer la page About depuis le back-office  
+    - 2.2. Créer un template dédié : `page-about.php` (optionnel)  
+4. [Étape 3 : Créer un menu et un footer](#étape-3--créer-un-menu-et-un-footer)  
+    - 3.1. Enregistrer le menu dans `functions.php`  
+    - 3.2. Créer les fichiers `header.php` et `footer.php`  
+    - 3.3. Mettre à jour `front-page.php` et `page-about.php`  
+    - 3.4. Gérer le menu dans l’admin  
+5. [Étape 4 : Ajouter la page Blog](#étape-4--ajouter-la-page-blog)  
+    - 4.1. Créer la page « Blog »  
+    - 4.2. Configurer la page des articles (Lecture)  
+    - 4.3. Créer le template `home.php`  
+6. [Étape 5 : Créer la page Post (article individuel)](#étape-5--créer-la-page-post-article-individuel)  
+    - 5.1. Créer le fichier `single.php`  
+    - 5.2. Tester l’affichage des articles  
+7. [Conclusion](#conclusion)  
+8. [Ressources utiles](#ressources-utiles)  
 
 ---
 
-## 2. Créer un thème enfant
+## Pré-requis
 
-### Pourquoi créer un thème enfant ?
-Un thème enfant permet de personnaliser un thème existant sans perdre vos modifications lors des mises à jour du thème parent.
+- Une **installation WordPress** fonctionnelle (locale via Wamp, Mamp, Local by Flywheel, etc. ou en ligne sur un hébergeur).
+- Un accès au dossier `wp-content/themes/` où nous allons créer et développer notre thème.
 
-### Étapes pour créer un thème enfant
+---
 
-#### Créer un dossier pour le thème enfant
-1. Accédez au répertoire WordPress : `wp-content/themes/`.
-2. Créez un nouveau dossier (exemple : `mon-theme-enfant`).
+## Étape 1 : Mettre en place la Home Page
 
-#### Ajouter un fichier `style.css`
-1. Dans le dossier du thème enfant, créez un fichier `style.css`.
-2. Ajoutez les informations suivantes au début du fichier :
+### 1.1. Créer le dossier du thème
+
+1. Dans le répertoire `wp-content/themes/`, créez un dossier, par exemple :
+
+   ```plaintext
+   my-simple-theme
+   ```
+
+2. Ce dossier contiendra tous les fichiers de votre thème.
+
+---
+
+### 1.2. Créer le fichier `style.css`
+
+Dans votre nouveau dossier `my-simple-theme`, créez un fichier **`style.css`**.  
+Ce fichier doit **impérativement** contenir les métadonnées suivantes pour que WordPress reconnaisse le thème :
 
 ```css
 /*
-Theme Name: Mon Thème Enfant
-Template: nom-du-theme-parent
+Theme Name: My Simple Theme
+Author: Votre Nom
+Description: Un thème WordPress minimaliste, créé pas à pas.
+Version: 1.0
 */
 ```
 
-> Remplacez `nom-du-theme-parent` par le nom exact du dossier du thème parent.
+Vous pouvez également y ajouter des règles CSS globales :
 
-#### Créer un fichier `functions.php`
-1. Dans le même dossier, créez un fichier `functions.php`.
-2. Ajoutez le code suivant pour inclure les styles du thème parent :
+```css
+/* Exemples de styles globaux */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+    margin: 0 0 10px 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+```
+
+---
+
+### 1.3. Créer le fichier `front-page.php`
+
+Toujours dans `my-simple-theme`, créez `front-page.php`.  
+Ce fichier est le template utilisé par WordPress pour afficher la page d’accueil si l’on choisit une page statique en tant que Home.
+
+Pour l’instant, faisons quelque chose de très simple :
 
 ```php
 <?php
-function mon_theme_enfant_enqueue_styles() {
-    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
-}
-add_action('wp_enqueue_scripts', 'mon_theme_enfant_enqueue_styles');
+/*
+ * front-page.php
+ * Template pour la page d'accueil
+ */
 ?>
-```
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <title><?php bloginfo('name'); ?> - <?php bloginfo('description'); ?></title>
+    <?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
 
-#### Activer le thème enfant
-1. Accédez à **Apparence > Thèmes**.
-2. Activez le thème enfant.
+    <h1>Bienvenue sur la Home Page de mon thème</h1>
 
----
-
-## 3. Découvrir les Hooks et les Templates
-
-### Les Hooks
-Les hooks permettent d'ajouter ou de modifier des fonctionnalités sans toucher directement aux fichiers du thème parent.
-
-#### Types de hooks
-- **Action hooks** : Ajoutent du contenu ou exécutent du code à un endroit spécifique.
-- **Filter hooks** : Modifient les données avant qu’elles soient affichées.
-
-#### Exemple d’un action hook
-Ajouter un texte personnalisé dans le pied de page :
-
-```php
-function ajouter_texte_pied_de_page() {
-    echo '<p>Site personnalisé avec WordPress</p>';
-}
-add_action('wp_footer', 'ajouter_texte_pied_de_page');
+    <?php wp_footer(); ?>
+</body>
+</html>
 ```
 
 ---
 
-### Les Templates
+### 1.4. Activer le thème et vérifier l’affichage
 
-Les fichiers templates suivent une hiérarchie pour afficher différents types de contenu.
-
-#### Exemple de fichiers de templates
-- **single.php** : Affiche un article.
-- **page.php** : Affiche une page.
-- **category.php** : Affiche une catégorie.
-- **404.php** : Affiche une page d’erreur 404.
-
-#### Modifier un template
-1. Copiez le fichier `single.php` du thème parent dans le dossier du thème enfant.
-2. Modifiez le contenu pour ajouter un texte ou une image spécifique.
+1. Dans le tableau de bord WordPress, allez dans : **Apparence > Thèmes**.
+2. Vous devriez voir apparaître « My Simple Theme ». Activez-le.
+3. Allez dans **Réglages > Lecture** et sélectionnez la page que vous souhaitez afficher en Page d’accueil statique. Si vous n’avez pas encore créé de page dans WordPress, créez-en une vide nommée « Home », puis définissez-la comme page d’accueil.
+4. Accédez à l’URL de votre site : vous devriez voir le message de test « Bienvenue sur la Home Page de mon thème ».
 
 ---
 
-## Exercices pratiques
-
-### Exercice 1 : Créer un thème enfant
-1. Créez un dossier pour le thème enfant dans `wp-content/themes/`.
-2. Ajoutez un fichier `style.css` avec les informations du thème parent.
-3. Ajoutez un fichier `functions.php` pour inclure les styles du thème parent.
-4. Activez le thème enfant et vérifiez son fonctionnement.
-
-### Exercice 2 : Ajouter un hook au thème enfant
-1. Modifiez le fichier `functions.php` du thème enfant.
-2. Ajoutez un texte personnalisé dans le pied de page en utilisant un **action hook**.
-
-### Exercice 3 : Modifier un template
-1. Copiez le fichier `single.php` du thème parent dans le thème enfant.
-2. Ajoutez un message ou un style spécifique pour personnaliser l’affichage des articles.
+... (le reste du contenu suit cette structure) ...
 
 ---
 
-## Ressources supplémentaires
-- [Documentation officielle WordPress - Thèmes](https://developer.wordpress.org/themes/)
-- [Hiérarchie des templates](https://developer.wordpress.org/themes/basics/template-hierarchy/)
-- [Hooks WordPress](https://developer.wordpress.org/plugins/hooks/)
-- [Guide pour les thèmes enfants](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
+## Conclusion
+
+À ce stade, vous avez un site WordPress fonctionnel avec :
+
+- Une Home Page (gérée par `front-page.php`)
+- Une page About avec un template dédié ou non (`page-about.php`)
+- Un menu principal (géré via l’admin et enregistré dans `functions.php`)
+- Une page Blog listant les articles (gérée par `home.php`)
+- Des articles individuels avec leur page (`single.php`)
+
+Bien sûr, il reste des optimisations possibles :
+
+- **Personnaliser le CSS** : Ajoutez vos styles dans `style.css` ou utilisez un préprocesseur (Sass).
+- **Images de mise en avant** : Activez-les avec `add_theme_support('post-thumbnails')` dans `functions.php`.
+- **Responsivité** : Assurez-vous que votre mise en page s’adapte bien aux mobiles et tablettes.
+- **SEO** : Installez des plugins comme Yoast SEO pour améliorer la visibilité.
+
+Ce tutoriel vous donne les bases pour comprendre la structure d’un thème WordPress. Libre à vous d’enrichir ce thème (widget, sidebar, custom post types, etc.) au fur et à mesure de vos besoins.
 
 ---
 
-## Quiz de révision
-1. Quels sont les fichiers principaux d’un thème WordPress ?
-2. Pourquoi utiliser un thème enfant ?
-3. Quelle est la différence entre un **action hook** et un **filter hook** ?
-4. Comment activer un thème enfant dans WordPress ?
+## Ressources utiles
+
+- [Documentation officielle WordPress (FR)](https://fr.wordpress.org/support/)
+- [Documentation officielle WordPress (EN)](https://wordpress.org/support/)
+- [Template Hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/)
+- [Navigation Menus](https://developer.wordpress.org/themes/functionality/navigation-menus/)
+- [The Loop (Boucle WordPress)](https://developer.wordpress.org/themes/basics/the-loop/)
