@@ -183,7 +183,14 @@ Créez un fichier `functions.php` à la racine du thème :
 function my_theme_register_menus() {
     register_nav_menu('primary', __('Menu Principal', 'my-simple-theme'));
 }
+
+function my_theme_enqueue_styles() {
+  wp_enqueue_style('my-simple-theme-style', get_stylesheet_uri());
+}
+
+
 add_action('after_setup_theme', 'my_theme_register_menus');
+add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
 ```
 
 ---
