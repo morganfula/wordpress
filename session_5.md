@@ -1,7 +1,6 @@
 # Création d’un site WordPress minimal pas à pas
 
-Ce tutoriel vous propose de créer un **thème WordPress** minimaliste, de manière **progressive**, en détaillant chaque étape et en ajoutant des **commentaires** dans le code.  
-Vous pourrez ainsi le copier-coller facilement sur GitHub, et l’utiliser comme base pour vos propres projets.
+Ce tutoriel vous propose de créer un **thème WordPress** minimaliste, de manière **progressive**, en détaillant chaque étape.en ajoutant des **commentaires** dans le code.  
 
 ---
 
