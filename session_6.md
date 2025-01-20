@@ -1,5 +1,3 @@
-# Session 6 : Développement d’un thème personnalisé WordPress
-
 # Session 6 : Hooks WordPress et Intégration de ACF
 
 Dans cette session, nous allons explorer l'utilisation des **Hooks** (`add_action`, `add_filter`) dans WordPress et intégrer **Advanced Custom Fields (ACF)** pour enrichir notre thème avec des champs personnalisés.
@@ -69,10 +67,28 @@ Ces exemples montrent comment les Hooks permettent de **personnaliser facilement
 Ajoutez ce code dans `functions.php` pour charger un fichier `script.js` dans le thème :
 
 ```php
-function ajouter_script_personnalise() {
-    wp_enqueue_script('custom-js', get_template_directory_uri() . '/js/script.js', array(), '1.0', true);
+<?php
+/**
+ * Fonctions principales du thème
+ */
+
+// 1) Activer la gestion des menus
+function my_theme_register_menus() {
+    register_nav_menu('primary', __('Menu Principal', 'my-simple-theme'));
 }
-add_action('wp_enqueue_scripts', 'ajouter_script_personnalise');
+
+// 2) Charger les styles et scripts
+function mytheme_styles_scripts() {
+  // Charger la feuille de style principale du thème
+  wp_enqueue_style('my-simple-theme-style', get_stylesheet_uri());
+  
+  // Charger le fichier JavaScript personnalisé situé dans le dossier js/
+  wp_enqueue_script('script-name', get_template_directory_uri() . '/js/script.js', array(), false, true);
+}
+
+// Ajouter les actions WordPress pour charger les styles et scripts et enregistrer le menu
+add_action('wp_enqueue_scripts', 'mytheme_styles_scripts');
+add_action('after_setup_theme', 'my_theme_register_menus');
 ```
 
 ### 2. Personnaliser le footer avec un Hook
