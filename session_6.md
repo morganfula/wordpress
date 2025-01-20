@@ -48,13 +48,17 @@ Exemple : Modifier le titre de chaque article
 Ajoutez ce code dans `functions.php` :
 
 ```php
-function modifier_titre_article($title) {
-    if (is_single()) {
-        $title = '★ ' . $title;
-    }
-    return $title;
+function modifier_titre_article($title, $id) {
+  // Vérifier si nous sommes bien sur une page single
+  if (is_single()) {
+      // Vérifier que l'ID correspond bien à un article (post) et non à un élément de menu
+      if (get_post_type($id) === 'post') {
+          $title = '★ ' . $title;
+      }
+  }
+  return $title;
 }
-add_filter('the_title', 'modifier_titre_article');
+add_filter('the_title', 'modifier_titre_article', 10, 2);
 ```
 
 Ces exemples montrent comment les Hooks permettent de **personnaliser facilement** un site WordPress sans modifier directement les fichiers de base.
